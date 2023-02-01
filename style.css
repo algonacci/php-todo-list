@@ -22,7 +22,7 @@ body{
 }
 #newtask{
     position: relative;
-    padding: 30px 20px;
+    padding: 10px 20px;
 }
 #newtask input{
     width: 75%;
@@ -41,7 +41,7 @@ body{
     outline: none;
     border-color: #0d75ec;
 }
-#newtask button{
+.submit input{
     position: relative;
     float: right;
     font-weight: 500;
@@ -61,7 +61,7 @@ body{
     width: 100%;
     position: relative;
     background-color: #ffffff;
-    padding: 30px 20px;
+    padding: 10px 10px;
     margin-top: 10px;
 }
 
@@ -99,4 +99,13 @@ body{
     flex-direction: column;
     font-family: 'Poppins',sans-serif;
     margin-top: 4px;
+}
+
+.todo {
+    font-family: 'Poppins', sans-serif;
+    margin-top: 30px;
+}
+
+.buttons {
+    float: right !important;
 }
