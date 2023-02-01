@@ -2,22 +2,11 @@
 require "config/config.php";
 require "config/db.php";
 
-$query  = "SELECT * FROM todos";
+$id     = mysqli_real_escape_string($conn, $_GET["id"]);
+$query  = "SELECT * FROM todos WHERE id = " . $id;
 $result = mysqli_query($conn, $query);
 $todos  = mysqli_fetch_all($result, MYSQLI_ASSOC);
 mysqli_free_result($result);
-
-if (isset($_POST["submit"])) {
- $todo = mysqli_real_escape_string($conn, $_POST["todo"]);
-
- $query = "INSERT INTO todos(todo) VALUES ('$todo')";
-
- if (mysqli_query($conn, $query)) {
-  header("Location: " . ROOT_URL . "");
- } else {
-  echo "Error " . mysqli_error($conn);
- }
-}
 mysqli_close($conn);
 ?>
 
@@ -36,7 +25,7 @@ mysqli_close($conn);
         <?php foreach ($todos as $todo): ?>
             <h3 class="card">
                 <p class="todo"><?php echo $counter . " " . $todo["todo"]; ?></p>
-                <a href="<?php echo ROOT_URL; ?>edit_todo.php?id=<?php $todo["id"]; ?>">Edit</a>
+                <button>Edit</button>
                 <button>Delete</button>
             </h3>
             <?php $counter++; ?>
