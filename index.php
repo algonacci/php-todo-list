@@ -18,6 +18,18 @@ if (isset($_POST["submit"])) {
   echo "Error " . mysqli_error($conn);
  }
 }
+
+if (isset($_POST["delete"])) {
+ $delete_id = mysqli_real_escape_string($conn, $_POST["delete_id"]);
+
+ $query = "DELETE FROM todos WHERE id = $delete_id";
+
+ if (mysqli_query($conn, $query)) {
+  header("Location: " . ROOT_URL . "");
+ } else {
+  echo "Error " . mysqli_error($conn);
+ }
+}
 mysqli_close($conn);
 ?>
 
@@ -39,7 +51,10 @@ mysqli_close($conn);
                 <a href="<?php echo ROOT_URL; ?>edit_todo.php?id=<?php echo $todo["id"]; ?>">
                     Edit
                 </a>
-                <a>Delete</a>
+                <form action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST">
+                    <input type="hidden" name="delete_id" value="<?php echo $todo["id"]; ?>">
+                    <input type="submit" name="delete" value="Delete">
+                </form>
             </h3>
             <?php $counter++; ?>
         <?php endforeach; ?>
