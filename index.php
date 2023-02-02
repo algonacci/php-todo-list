@@ -36,8 +36,10 @@ mysqli_close($conn);
         <?php foreach ($todos as $todo): ?>
             <h3 class="card">
                 <p class="todo"><?php echo $counter . " " . $todo["todo"]; ?></p>
-                <a href="<?php echo ROOT_URL; ?>edit_todo.php?id=<?php $todo["id"]; ?>">Edit</a>
-                <button>Delete</button>
+                <a href="<?php echo ROOT_URL; ?>edit_todo.php?id=<?php echo $todo["id"]; ?>">
+                    Edit
+                </a>
+                <a>Delete</a>
             </h3>
             <?php $counter++; ?>
         <?php endforeach; ?>
