@@ -8,7 +8,7 @@ $todos  = mysqli_fetch_all($result, MYSQLI_ASSOC);
 mysqli_free_result($result);
 
 if (isset($_POST["submit"])) {
- $todo = mysqli_real_escape_string($conn, $_POST["todo"]);
+ $todo = htmlentities(mysqli_real_escape_string($conn, $_POST["todo"]));
 
  $query = "INSERT INTO todos(todo) VALUES ('$todo')";
 
